@@ -46,7 +46,7 @@ function Catalogo({ agregarAlCarrito }) {
   const [listaProductos, setListaProductos] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:3000/productos")
+    fetch("https://funtechstore-production.up.railway.app/productos")
       .then(r => r.json())
       .then(data => setListaProductos(data))
       .catch(console.error);

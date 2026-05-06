@@ -240,7 +240,7 @@ function LoginCliente() {
   const handleGoogleCallback = async (response) => {
     setError(""); setCargando(true);
     try {
-      const res = await fetch("http://localhost:3000/auth/google", {
+      const res = await fetch("https://funtechstore-production.up.railway.app/auth/google", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token: response.credential })
@@ -263,7 +263,7 @@ function LoginCliente() {
     setError("");
     setCargando(true);
     try {
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch("https://funtechstore-production.up.railway.app/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })

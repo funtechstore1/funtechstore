@@ -90,7 +90,7 @@ function ResetPassword() {
     if (!emailSolicitud) return setError("Ingresá tu email");
     setError(""); setCargando(true);
     try {
-      await fetch("http://localhost:3000/reset-password/solicitar", {
+      await fetch("https://funtechstore-production.up.railway.app/reset-password/solicitar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: emailSolicitud })
@@ -106,7 +106,7 @@ function ResetPassword() {
     if (nuevaPassword.length < 6) return setError("La contraseña debe tener al menos 6 caracteres");
     setError(""); setCargando(true);
     try {
-      const res = await fetch("http://localhost:3000/reset-password/confirmar", {
+      const res = await fetch("https://funtechstore-production.up.railway.app/reset-password/confirmar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token, password: nuevaPassword })

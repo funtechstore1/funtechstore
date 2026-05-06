@@ -103,7 +103,7 @@ function LoginAdmin() {
     setError("");
     setCargando(true);
     try {
-      const response = await fetch("http://localhost:3000/login-admin", {
+      const response = await fetch("https://funtechstore-production.up.railway.app/login-admin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })

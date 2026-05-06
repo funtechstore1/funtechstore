@@ -63,7 +63,7 @@ function App() {
     return () => window.removeEventListener("storage", handleStorage);
   }, []);
   useEffect(() => {
-    fetch("http://localhost:3000/productos")
+    fetch("https://funtechstore-production.up.railway.app/productos")
       .then(r => r.json())
       .then(data => setListaProductos(data))
       .catch(console.error);
@@ -425,7 +425,7 @@ function App() {
                           if (e.key !== "Enter" || codigoPostal.length < 4) return;
                           setCotizandoEnvio(true); setErrorEnvio(""); setOpcionesEnvio(null); setEnvioSeleccionado(null);
                           try {
-                            const res = await fetch("http://localhost:3000/cotizar-envio", {
+                            const res = await fetch("https://funtechstore-production.up.railway.app/cotizar-envio", {
                               method: "POST", headers: { "Content-Type": "application/json" },
                               body: JSON.stringify({ codigoPostalDestino: codigoPostal, items: carrito })
                             });
@@ -448,7 +448,7 @@ function App() {
                           if (codigoPostal.length < 4) { setErrorEnvio("Ingresá un código postal válido"); return; }
                           setCotizandoEnvio(true); setErrorEnvio(""); setOpcionesEnvio(null); setEnvioSeleccionado(null);
                           try {
-                            const res = await fetch("http://localhost:3000/cotizar-envio", {
+                            const res = await fetch("https://funtechstore-production.up.railway.app/cotizar-envio", {
                               method: "POST", headers: { "Content-Type": "application/json" },
                               body: JSON.stringify({ codigoPostalDestino: codigoPostal, items: carrito })
                             });
@@ -552,7 +552,7 @@ function App() {
                           precio: envioSeleccionado.precio,
                           codigoPostal
                         } : null;
-                        const response = await fetch("http://localhost:3000/crear-preferencia", {
+                        const response = await fetch("https://funtechstore-production.up.railway.app/crear-preferencia", {
                           method: "POST",
                           headers: { "Content-Type": "application/json" },
                           body: JSON.stringify({ items: carrito, email: emailCliente, nombre: nombreCliente, envio: envioData })
@@ -572,7 +572,7 @@ function App() {
                         } else { alert("Error al generar el pago"); }
 
                       } else if (metodoPago === "transferencia") {
-                        const response = await fetch("http://localhost:3000/pedido-manual", {
+                        const response = await fetch("https://funtechstore-production.up.railway.app/pedido-manual", {
                           method: "POST",
                           headers: { "Content-Type": "application/json" },
                           body: JSON.stringify({ items: carrito, email: emailCliente, nombre: nombreCliente, metodoPago: "transferencia" })
@@ -584,7 +584,7 @@ function App() {
                         } else { alert("Error al registrar el pedido"); }
 
                       } else if (metodoPago === "efectivo") {
-                        const response = await fetch("http://localhost:3000/pedido-manual", {
+                        const response = await fetch("https://funtechstore-production.up.railway.app/pedido-manual", {
                           method: "POST",
                           headers: { "Content-Type": "application/json" },
                           body: JSON.stringify({ items: carrito, email: emailCliente, nombre: nombreCliente, metodoPago: "efectivo" })
@@ -829,7 +829,7 @@ function App() {
                       }
                       setContactoCargando(true);
                       try {
-                        const res = await fetch("http://localhost:3000/contacto", {
+                        const res = await fetch("https://funtechstore-production.up.railway.app/contacto", {
                           method: "POST",
                           headers: { "Content-Type": "application/json" },
                           body: JSON.stringify({ nombre: contactoNombre, email: contactoEmail, mensaje: contactoMensaje })

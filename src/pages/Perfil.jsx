@@ -85,7 +85,7 @@ function Perfil() {
   const cargarPedidos = async () => {
     setCargando(true);
     try {
-      const res = await fetch("http://localhost:3000/mis-pedidos", { headers: authHeader });
+      const res = await fetch("https://funtechstore-production.up.railway.app/mis-pedidos", { headers: authHeader });
       if (res.status === 401 || res.status === 403) {
         localStorage.removeItem("clienteToken");
         localStorage.removeItem("clienteEmail");
@@ -101,7 +101,7 @@ function Perfil() {
 
   const cargarPerfil = async () => {
     try {
-      const res = await fetch("http://localhost:3000/perfil", { headers: authHeader });
+      const res = await fetch("https://funtechstore-production.up.railway.app/perfil", { headers: authHeader });
       const data = await res.json();
       const p = { nombre: data.nombre || "", email: data.email || "", telefono: data.telefono || "" };
       setPerfil(p); setPerfilForm(p);
@@ -111,7 +111,7 @@ function Perfil() {
   const cargarDirecciones = async () => {
     setCargandoDirs(true);
     try {
-      const res = await fetch("http://localhost:3000/direcciones", { headers: authHeader });
+      const res = await fetch("https://funtechstore-production.up.railway.app/direcciones", { headers: authHeader });
       const data = await res.json();
       setDirecciones(Array.isArray(data) ? data : []);
     } catch {}
@@ -121,7 +121,7 @@ function Perfil() {
   const guardarPerfil = async () => {
     setGuardandoPerfil(true); setMensajePerfil("");
     try {
-      const res = await fetch("http://localhost:3000/perfil", {
+      const res = await fetch("https://funtechstore-production.up.railway.app/perfil", {
         method: "PUT",
         headers: { "Content-Type": "application/json", ...authHeader },
         body: JSON.stringify(perfilForm)
@@ -158,7 +158,7 @@ function Perfil() {
       return setErrorDir("Completá todos los campos obligatorios");
     setGuardandoDir(true); setErrorDir("");
     try {
-      const url = editandoDir ? `http://localhost:3000/direcciones/${editandoDir}` : "http://localhost:3000/direcciones";
+      const url = editandoDir ? `https://funtechstore-production.up.railway.app/direcciones/${editandoDir}` : "https://funtechstore-production.up.railway.app/direcciones";
       const res = await fetch(url, {
         method: editandoDir ? "PUT" : "POST",
         headers: { "Content-Type": "application/json", ...authHeader },
@@ -174,7 +174,7 @@ function Perfil() {
   const eliminarDir = async (id) => {
     if (!confirm("¿Eliminar esta dirección?")) return;
     try {
-      const res = await fetch(`http://localhost:3000/direcciones/${id}`, { method: "DELETE", headers: authHeader });
+      const res = await fetch(`https://funtechstore-production.up.railway.app/direcciones/${id}`, { method: "DELETE", headers: authHeader });
       const data = await res.json();
       if (res.ok) setDirecciones(data.direcciones);
     } catch {}
@@ -184,7 +184,7 @@ function Perfil() {
     if (confirmTexto !== "ELIMINAR") return setErrorEliminar('Escribí "ELIMINAR" para confirmar');
     setEliminandoCuenta(true); setErrorEliminar("");
     try {
-      const res = await fetch("http://localhost:3000/cuenta", {
+      const res = await fetch("https://funtechstore-production.up.railway.app/cuenta", {
         method: "DELETE",
         headers: authHeader
       });

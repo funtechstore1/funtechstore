@@ -58,7 +58,7 @@ function DetalleProducto({ agregarAlCarrito }) {
     setCargando(true);
     setFotoActual(0);
     setVariantesElegidas({});
-    fetch("http://localhost:3000/productos")
+    fetch("https://funtechstore-production.up.railway.app/productos")
       .then(r => r.json())
       .then(data => {
         let encontrado = null;
@@ -80,7 +80,7 @@ function DetalleProducto({ agregarAlCarrito }) {
 
   useEffect(() => {
     if (!id) return;
-    fetch(`http://localhost:3000/resenas/${id}`)
+    fetch(`https://funtechstore-production.up.railway.app/resenas/${id}`)
       .then(r => r.json()).then(setResenas).catch(console.error);
   }, [id]);
 
@@ -89,7 +89,7 @@ function DetalleProducto({ agregarAlCarrito }) {
     if (!comentario.trim()) return alert("Escribí un comentario");
     setEnviando(true);
     try {
-      const response = await fetch("http://localhost:3000/resenas", {
+      const response = await fetch("https://funtechstore-production.up.railway.app/resenas", {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${clienteToken}` },
         body: JSON.stringify({ productoId: id, estrellas, comentario })
@@ -97,7 +97,7 @@ function DetalleProducto({ agregarAlCarrito }) {
       const data = await response.json();
       if (response.ok) {
         setComentario(""); setEstrellas(0);
-        const res = await fetch(`http://localhost:3000/resenas/${id}`);
+        const res = await fetch(`https://funtechstore-production.up.railway.app/resenas/${id}`);
         setResenas(await res.json());
       } else { alert(data.message || "Error al enviar reseña"); }
     } catch { alert("Error de conexión"); }

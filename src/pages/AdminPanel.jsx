@@ -301,7 +301,7 @@ function AdminPanel() {
   const cargarProductos = async () => {
     setCargandoProductos(true);
     try {
-      const res = await fetch("http://localhost:3000/productos");
+      const res = await fetch("https://funtechstore-production.up.railway.app/productos");
       const data = await res.json();
       setListaProductos(data);
       if (!categoriaSeleccionada && Object.keys(data).length > 0)
@@ -317,7 +317,7 @@ function AdminPanel() {
 
   const cargarPedidos = async () => {
     try {
-      const response = await fetch("http://localhost:3000/pedidos", {
+      const response = await fetch("https://funtechstore-production.up.railway.app/pedidos", {
         headers: { Authorization: `Bearer ${token()}` }
       });
       if (!response.ok) throw new Error("No autorizado");
@@ -327,7 +327,7 @@ function AdminPanel() {
 
   const cambiarEstado = async (id, nuevoEstado) => {
     try {
-      await fetch(`http://localhost:3000/pedidos/${id}`, {
+      await fetch(`https://funtechstore-production.up.railway.app/pedidos/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token()}` },
         body: JSON.stringify({ estado: nuevoEstado })
@@ -374,7 +374,7 @@ function AdminPanel() {
     if (!nuevoNombre || !nuevoPrecio || !categoriaSeleccionada)
       return alert("Completá nombre, precio y categoría");
     try {
-      const res = await fetch("http://localhost:3000/productos", {
+      const res = await fetch("https://funtechstore-production.up.railway.app/productos", {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token()}` },
         body: JSON.stringify({ nombre: nuevoNombre, precio: parseInt(nuevoPrecio), imagen: (nuevasImagenes.map(u => u.trim()).filter(Boolean)[0]) || nuevaImagen, imagenes: nuevasImagenes.map(u => u.trim()).filter(Boolean).length > 0 ? nuevasImagenes.map(u => u.trim()).filter(Boolean) : nuevaImagen ? [nuevaImagen] : [], descripcion: nuevaDescripcion, marca: nuevaMarca, categoria: categoriaSeleccionada, stock: parseInt(nuevoStock) || 0, variantes: nuevasVariantes.filter(v => v.nombre.trim() && v.opciones.length > 0) })
@@ -388,7 +388,7 @@ function AdminPanel() {
   const eliminarProducto = async (cat, id) => {
     if (!confirm("¿Eliminar este producto?")) return;
     try {
-      await fetch(`http://localhost:3000/productos/${id}`, {
+      await fetch(`https://funtechstore-production.up.railway.app/productos/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token()}` }
       });
@@ -399,7 +399,7 @@ function AdminPanel() {
   const eliminarCategoria = async (cat) => {
     if (!confirm(`¿Eliminar la categoría "${cat}" y todos sus productos?`)) return;
     try {
-      await fetch(`http://localhost:3000/productos/categoria/${cat}`, {
+      await fetch(`https://funtechstore-production.up.railway.app/productos/categoria/${cat}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token()}` }
       });
@@ -443,7 +443,7 @@ function AdminPanel() {
         stock: parseInt(editStock) || 0,
         variantes: editVariantes.filter(v => v.nombre.trim() && v.opciones.length > 0)
       };
-      const res = await fetch(`http://localhost:3000/productos/${productoEditando.id}`, {
+      const res = await fetch(`https://funtechstore-production.up.railway.app/productos/${productoEditando.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token()}` },
         body: JSON.stringify(payload)
