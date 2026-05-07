@@ -961,7 +961,7 @@ app.delete("/direcciones/:dirId", verificarToken, async (req, res) => {
 // DELETE cuenta — eliminar cuenta del cliente logueado
 app.delete("/cuenta", verificarToken, async (req, res) => {
   try {
-    await User.findByIdAndDelete(req.usuario.id);
+    await User.findByIdAndDelete(req.user.id);
     res.json({ ok: true, message: "Cuenta eliminada correctamente" });
   } catch (error) {
     res.status(500).json({ message: "Error al eliminar la cuenta" });
