@@ -615,6 +615,59 @@ function Catalogo({ agregarAlCarrito, productosIniciales }) {
           .filtros-mobile-btn { display: flex !important; }
         }
       `}</style>
+
+      {/* FOOTER */}
+      <footer className="footer">
+        <div className="footer-inner">
+          <div className="footer-brand">
+            <img src="/logo.png" alt="FunTech" className="footer-logo" />
+            <p>Accesorios tecnológicos de calidad para tu día a día.</p>
+          </div>
+          <div className="footer-links">
+            <div className="footer-col">
+              <h4>Tienda</h4>
+              <a href="/catalogo">Productos</a>
+              <a href="/#como-comprar">Cómo comprar</a>
+            </div>
+            <div className="footer-col">
+              <h4>Cuenta</h4>
+              <a href="/login">Iniciar sesión</a>
+              <a href="/register">Registrarse</a>
+              <a href="/perfil">Mi perfil</a>
+            </div>
+            <div className="footer-col">
+              <h4>Contacto</h4>
+              <a href="https://instagram.com/funtechstore" target="_blank" rel="noreferrer"
+                style={{ color: "rgba(255,255,255,0.7)", textDecoration: "none", display: "flex", alignItems: "center", gap: "8px" }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <circle cx="12" cy="12" r="4.5" />
+                  <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
+                </svg>
+                Instagram
+              </a>
+              <a href="mailto:funtechstore1@gmail.com"
+                style={{ color: "rgba(255,255,255,0.7)", textDecoration: "none", display: "flex", alignItems: "center", gap: "8px" }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <polyline points="2,4 12,13 22,4" />
+                </svg>
+                funtechstore1@gmail.com
+              </a>
+              <a href="https://wa.me/5493412682820" target="_blank" rel="noreferrer"
+                style={{ color: "rgba(255,255,255,0.7)", textDecoration: "none", display: "flex", alignItems: "center", gap: "8px" }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" />
+                </svg>
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>© 2026 FunTech · Todos los derechos reservados.</p>
+        </div>
+      </footer>
     </div>
   );
 }
