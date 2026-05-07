@@ -193,21 +193,56 @@ function DetalleProducto({ agregarAlCarrito }) {
       <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "48px 20px" }}>
 
         {/* Detalle principal */}
-        <div style={{
-          display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px",
-          background: "white", borderRadius: "24px", padding: "50px",
-          boxShadow: "0 4px 24px rgba(0,0,0,0.06)"
-        }}>
+        <style>{`
+          .detalle-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            background: white;
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+          }
+          .detalle-galeria-foto {
+            background: white;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 360px;
+            overflow: hidden;
+            padding: 24px;
+            position: relative;
+          }
+          .detalle-miniaturas {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+          }
+          @media (max-width: 768px) {
+            .detalle-grid {
+              grid-template-columns: 1fr;
+              gap: 24px;
+              padding: 20px;
+              border-radius: 16px;
+            }
+            .detalle-galeria-foto {
+              min-height: 260px;
+              padding: 16px;
+            }
+            .detalle-miniaturas {
+              justify-content: center;
+            }
+          }
+        `}</style>
+        <div className="detalle-grid">
 
           {/* Galería */}
           <div>
             {/* Foto principal */}
-            <div style={{
-              background: "white", borderRadius: "18px",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              minHeight: "360px", overflow: "hidden", padding: "24px",
-              position: "relative"
-            }}>
+            <div className="detalle-galeria-foto">
               {fotos.length > 0 ? (
                 <img src={fotos[fotoActual]} alt={producto.nombre}
                   style={{ maxWidth: "100%", maxHeight: "380px", objectFit: "contain", transition: "opacity 0.2s" }} />
@@ -233,7 +268,7 @@ function DetalleProducto({ agregarAlCarrito }) {
 
             {/* Miniaturas */}
             {fotos.length > 1 && (
-              <div style={{ display: "flex", gap: "10px", marginTop: "14px", flexWrap: "wrap" }}>
+              <div className="detalle-miniaturas">
                 {fotos.map((foto, i) => (
                   <div key={i} onClick={() => setFotoActual(i)} style={{
                     width: "64px", height: "64px", borderRadius: "10px", background: "white",
