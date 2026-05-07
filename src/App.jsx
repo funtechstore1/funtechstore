@@ -635,7 +635,7 @@ function App() {
             </div>
             <div className="hero-image">
               <div className="hero-image-wrapper">
-                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9" alt="Smartphone premium" />
+                <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&q=80" alt="Auriculares premium" />
               </div>
             </div>
           </section>
