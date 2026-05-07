@@ -39,18 +39,24 @@ const IconList = () => (
   </svg>
 );
 
-function Catalogo({ agregarAlCarrito }) {
+function Catalogo({ agregarAlCarrito, productosIniciales }) {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [listaProductos, setListaProductos] = useState({});
+  const [listaProductos, setListaProductos] = useState(productosIniciales || {});
 
   useEffect(() => {
-    fetch("https://funtechstore-production.up.railway.app/productos")
-      .then(r => r.json())
-      .then(data => setListaProductos(data))
-      .catch(console.error);
-  }, []);
+    // Si ya vienen productos desde App.jsx los usamos directamente
+    if (productosIniciales && Object.keys(productosIniciales).length > 0) {
+      setListaProductos(productosIniciales);
+    } else {
+      // Fallback: fetch propio si se accede directo a /catalogo sin pasar por home
+      fetch("https://funtechstore-production.up.railway.app/productos")
+        .then(r => r.ok ? r.json() : Promise.reject())
+        .then(data => { if (data && typeof data === "object") setListaProductos(data); })
+        .catch(console.error);
+    }
+  }, [productosIniciales]);
 
   const categorias = Object.keys(listaProductos);
   const todosLosProductos = Object.entries(listaProductos).flatMap(([cat, items]) =>
