@@ -158,18 +158,52 @@ function Catalogo({ agregarAlCarrito, productosIniciales }) {
         boxShadow: "0 1px 12px rgba(0,0,0,0.04)"
       }}>
         <img src="/logo.svg" alt="FunTech" style={{ height: "60px", cursor: "pointer" }} onClick={() => navigate("/")} />
-        <button onClick={() => navigate("/")}
-          style={{
-            background: "none", border: "1.5px solid #e8e8e8", cursor: "pointer",
-            fontSize: "13px", color: "#666", padding: "8px 16px", borderRadius: "20px",
-            display: "flex", alignItems: "center", gap: "7px", fontWeight: "600",
-            fontFamily: "inherit", transition: "border-color 0.2s"
-          }}
-          onMouseOver={e => e.currentTarget.style.borderColor = "#111"}
-          onMouseOut={e => e.currentTarget.style.borderColor = "#e8e8e8"}
-        >
-          <IconArrowLeft /> Volver a la tienda
-        </button>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <button onClick={() => navigate("/")}
+            style={{
+              background: "none", border: "1.5px solid #e8e8e8", cursor: "pointer",
+              fontSize: "13px", color: "#666", padding: "8px 16px", borderRadius: "20px",
+              display: "flex", alignItems: "center", gap: "7px", fontWeight: "600",
+              fontFamily: "inherit", transition: "border-color 0.2s"
+            }}
+            onMouseOver={e => e.currentTarget.style.borderColor = "#111"}
+            onMouseOut={e => e.currentTarget.style.borderColor = "#e8e8e8"}
+          >
+            <IconArrowLeft /> Volver a la tienda
+          </button>
+          <button onClick={() => navigate(localStorage.getItem("clienteToken") ? "/perfil" : "/login")}
+            style={{
+              background: "none", border: "1.5px solid #e8e8e8", cursor: "pointer",
+              padding: "8px 10px", borderRadius: "20px", display: "flex", alignItems: "center",
+              gap: "6px", fontWeight: "600", fontSize: "13px", color: "#666",
+              fontFamily: "inherit", transition: "border-color 0.2s"
+            }}
+            onMouseOver={e => e.currentTarget.style.borderColor = "#111"}
+            onMouseOut={e => e.currentTarget.style.borderColor = "#e8e8e8"}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+            {localStorage.getItem("clienteToken") ? (localStorage.getItem("clienteNombre") || "Mi perfil") : "Ingresar"}
+          </button>
+          <button onClick={() => navigate("/#carrito")}
+            style={{
+              background: "#111", border: "none", cursor: "pointer",
+              padding: "8px 16px", borderRadius: "20px", display: "flex", alignItems: "center",
+              gap: "7px", fontWeight: "700", fontSize: "13px", color: "#ffd000",
+              fontFamily: "inherit", transition: "background 0.2s", position: "relative"
+            }}
+            onMouseOver={e => e.currentTarget.style.background = "#333"}
+            onMouseOut={e => e.currentTarget.style.background = "#111"}
+            title="Ver carrito en la tienda"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+              <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+            </svg>
+            Carrito
+          </button>
+        </div>
       </div>
 
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "32px 20px", display: "flex", gap: "28px", alignItems: "flex-start" }}>
