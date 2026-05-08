@@ -265,9 +265,8 @@ function App() {
           )}
 
           {/* CARRITO LATERAL */}
-          <div className={`overlay${carritoAbierto ? " visible" : ""}`}
-            style={{ pointerEvents: carritoAbierto ? "all" : "none" }}
-            onClick={() => setCarritoAbierto(false)}>
+          {carritoAbierto && (
+            <div className="overlay" onClick={() => setCarritoAbierto(false)}>
               <div className="carrito-lateral" onClick={(e) => e.stopPropagation()}>
                 <div className="carrito-header">
                   <h2>Tu carrito</h2>
@@ -327,6 +326,7 @@ function App() {
                 )}
               </div>
             </div>
+          )}
 
           {/* MODAL MÉTODOS DE PAGO */}
           {modalPagoAbierto && (
