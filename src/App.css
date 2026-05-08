@@ -273,12 +273,11 @@ body {
   display: flex;
   justify-content: flex-end;
   z-index: 1000;
-  backdrop-filter: blur(3px);
-  animation: overlayFadeIn 0.25s ease;
+  animation: overlayFadeIn 0.2s ease;
 }
 @keyframes overlayFadeIn {
-  from { background: rgba(0,0,0,0); backdrop-filter: blur(0px); }
-  to   { background: rgba(0,0,0,0.45); backdrop-filter: blur(3px); }
+  from { background: rgba(0,0,0,0); }
+  to   { background: rgba(0,0,0,0.45); }
 }
 .carrito-lateral {
   width: 380px;
@@ -289,8 +288,9 @@ body {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slideIn 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: -8px 0 40px rgba(0,0,0,0.12);
+  will-change: transform;
 }
 @keyframes slideIn {
   from { transform: translateX(100%); }
